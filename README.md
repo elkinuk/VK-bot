@@ -9,7 +9,7 @@ VK bot
 * AJAX
 * JQuery 3.2.1
 
-В файле vk.js вставить свой токен в parameters.access_token
+В файле vk.js вставить свой токен в `parameters.access_token`
 как это сделать подробно можно узнать [по ссылке](https://vk.com/dev/first_guide?f=3.%20Авторизация%20пользователя)
 
 ##### Затем
