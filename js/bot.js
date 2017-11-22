@@ -3,7 +3,7 @@ import {VK} from './vk.js'
 export class Bot{
     static start_talking(){
         if (!this.myid){ //чтобы по нажатию на ту же кнопку можно было стопить
-            this.myid = setInterval(()=>{
+            this.myid = setInterval(()=>{ //сделать обработчик на случай если не удастся отправить сообщение
                 VK.send_request('messages.getDialogs',{offset:0, count:53}, (data)=>{Bot.talk(data.response);});
             },1000);
             console.log('Бот заговорил');
@@ -17,8 +17,13 @@ export class Bot{
         switch (comand) {
             case '/fuckyou':
                 return 'fuck yourself';
+            case 'Привет':
+                return 'Привет';
+            case 'Как дела?':
+                return 'Хорошо, а у вас?';
+            case 'Хорошо':
+                return 'Клево';
             default: return ':)';
-
         }
     }
     static talk(dialogs){
