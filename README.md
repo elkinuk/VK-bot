@@ -17,3 +17,7 @@ VK bot
     $ cd *project dir*
     $ webpack
     $ npm start
+
+##### После этого
+
+Переходите в <localhost:8080> и юзаете
