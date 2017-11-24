@@ -11,15 +11,6 @@ var connection = mysql.createConnection({
     database: 'dbname'
 });
 
-function chip(pass) {
-  let str = pass.toString();
-  let key = str.length;
-  let res = []
-  for (let i=0; i < key; i++)
-      res += String.fromCharCode(str.charCodeAt(i) + key * (i+1));
-  return res;
-};
-
 function accept(req, res) { //основная функция обработки
     let url = "",
         par = "";
@@ -31,17 +22,23 @@ function accept(req, res) { //основная функция обработки
         }
     if (url == "") url = req.url; //если просто гет
     switch (url) {
-        case '/get':
+        case '/select':
             console.log('get');
-            db_select(res, 'Users', '*', function (results) {
-                for (let i = 0; i < results.length; i++)
-                    if (results[i].name == par.name)
-                        return results[i].id;
+            db_select(res, par.table, par.fields, function (results) {
+                return JSON.stringify(results);
             });
             break;
+        case '/insert':
+            console.log('insert');
+            db_insert(res, par.table, par.fields, `"${par.value}"`);
+            break;
         default:
-            file.serve(req, res);;
+            file.serve(req, res);
     }
+}
+
+function date_format(date) {
+    return (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()).toString();
 }
 
 function db_select(res, table, field, callback) {
@@ -81,10 +78,6 @@ function db_edit(res, table, field, val, id) {
                 return null;
             }
     });
-}
-
-function date_format(date) {
-    return (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()).toString();
 }
 
 // ------ этот код запускает веб-сервер -------

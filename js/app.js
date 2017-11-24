@@ -13,7 +13,7 @@ export class App{
         }
         xhr.send(null); //отправить запрос
     }
-    
+
     static listen_comand(comand){
         switch (comand) {
             case '/fuckyou':
@@ -26,5 +26,13 @@ export class App{
                 return 'Клево';
             default: return ':)';
         }
+    }
+    static get_data(){
+        App.require_to_bd('select', '?table=Users&fields=*', function (xhr) {
+            console.log(xhr.responseText);
+        });
+    }
+    static set_data(value){
+        App.require_to_bd('insert', `?table=Users&fields=name&value=${value}`, function (xhr) {});
     }
 }

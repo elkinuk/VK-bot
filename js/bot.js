@@ -13,17 +13,13 @@ export class Bot{
             this.myid = undefined;
             console.log('Бот замолчал');
         }
-        App.require_to_bd('get', '?name=Vika', function (xhr) {
-            alert(xhr.responseText);
-        });
     }
 
     static talk(dialogs){
-        for(let i = 1; i<dialogs.length;i++){
-            if (dialogs[i].out === 0 && dialogs[i].read_state === 0){
+        for(let i = 1; i<dialogs.length;i++)
+            if (dialogs[i].out === 0 && dialogs[i].read_state === 0)
                 Bot.send_message(dialogs[i].uid, App.listen_comand(dialogs[i].body));
-            }
-        }
+
     }
 
     static send_message(uid, text){
