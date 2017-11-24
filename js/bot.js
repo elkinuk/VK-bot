@@ -1,4 +1,5 @@
-import {VK} from './vk.js'
+import {VK} from './vk.js';
+import {App} from './app.js';
 
 export class Bot{
     static start_talking(){
@@ -12,24 +13,15 @@ export class Bot{
             this.myid = undefined;
             console.log('Бот замолчал');
         }
+        App.require_to_bd('get', '?name=Vika', function (xhr) {
+            alert(xhr.responseText);
+        });
     }
-    static listen_comand(comand){
-        switch (comand) {
-            case '/fuckyou':
-                return 'fuck yourself';
-            case 'Привет':
-                return 'Привет';
-            case 'Как дела?':
-                return 'Хорошо, а у вас?';
-            case 'Хорошо':
-                return 'Клево';
-            default: return ':)';
-        }
-    }
+
     static talk(dialogs){
         for(let i = 1; i<dialogs.length;i++){
             if (dialogs[i].out === 0 && dialogs[i].read_state === 0){
-                Bot.send_message(dialogs[i].uid, Bot.listen_comand(dialogs[i].body));
+                Bot.send_message(dialogs[i].uid, App.listen_comand(dialogs[i].body));
             }
         }
     }
