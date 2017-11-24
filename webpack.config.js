@@ -1,6 +1,7 @@
 module.exports = {
     entry: './js/client.js',
     output: {
+        path: __dirname + "/js",
         filename: 'index.js'
     },
     devServer: {
