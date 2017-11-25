@@ -11,9 +11,7 @@ export class App {
 			if (xhr.status != 200) {
 				alert('Ошибка ' + xhr.status + ': ' + xhr.statusText); // обработать ошибку
 				return;
-			}
-			if (callback != undefined) callback(xhr); // обработать результат
-			//console.log('GET is working');
+			} else if (callback != undefined) callback(xhr); // обработать результат
 		}
 		xhr.send(null); //отправить запрос
 	}
@@ -24,7 +22,7 @@ export class App {
 					table: 'Dialogs',
 					fields: 'answer',
 					wfield: 'phrase',
-					wval: dialogs[i].body
+					wval: App.convert(dialogs[i].body)
 				}), (xhr) => {
                     let str = JSON.parse(xhr.responseText)[0];
                     str = str == undefined ? ':)' : str.answer;
@@ -33,22 +31,19 @@ export class App {
 				});
 			}
 	}
-	static get_data() {
-        App.require_to_bd('select?', $.param({
-            table: 'Dialogs',
-            fields: 'answer',
-            wfield: 'phrase',
-            wval: 'привет'//dialogs[i].body
-        }), (xhr) => {
-            //Bot.send_message(dialogs[i].uid, JSON.parse(xhr.responseText).answer);
-            console.log(JSON.parse(xhr.responseText));
-        });
+	static add_answer(phrase, answer) {
+		if(phrase && answer){
+			App.require_to_bd('insert?', $.param({
+				table: 'Dialogs',
+				field: 'phrase, answer',
+				value: [App.convert(phrase),answer].join('","')
+			}));
+			console.log(`Клиент:"${phrase}" - Бот:"${answer}"`);
+		}
 	}
-	static set_data(value) {
-		App.require_to_bd('insert?', $.param({
-			table: 'Dialogs',
-			field: 'answer',
-			value: value
-		}));
+	static convert(str){
+		str = str.toLowerCase().replace(/\s/g, '').replace(/[.,\/#!?$%\^&\*;:№"'\[\]@\\{}=\-_`~()]/g,'')
+		console.log(str);
+		return str;
 	}
 }

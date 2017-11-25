@@ -2,8 +2,9 @@ import {Bot} from './bot.js'
 import {App} from './app.js'
 
 $('#talk').on('click', Bot.start_talking);
-$('#set').on('click', function(){App.set_data('11');});
-$('#get').on('click', function(){App.get_data();});
 
+$('#add_answer').on('click', function(){
+    App.add_answer($('#phrase').val(),$('#answer').val());
+});
 
 console.log('Server running on port 8080');

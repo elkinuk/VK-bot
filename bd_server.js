@@ -23,7 +23,7 @@ function accept(req, res) { //основная функция обработки
     if (url == "") url = req.url; //если просто гет
     switch (url) {
         case '/select':
-            console.log('get');
+            console.log('select');
             db_select({
                 res: res,
                 table: par.table,
