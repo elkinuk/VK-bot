@@ -1,0 +1,143 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/**************************************************************************/
+@font-face {
+    font-family: Fashion; /* Имя шрифта */
+    src: url(../media/fonts/FashionFetishLight.ttf); /* Путь к файлу со шрифтом */
+   }
+
+ *{
+     font-family: Fashion;
+     box-sizing: border-box;
+     color: #1f4971;
+ }
+body{
+    background-color: #63AEC9;
+    background: linear-gradient(45deg,#95c2e1,#156FAC);
+	background-size: 100% 300%;
+    /*background-size: 2600% 2600%;
+    animation: AnimationName 140s linear infinite;*/
+}
+header{
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 5px 8px 0px rgba(0,0,0,0.15);
+    display: flex;
+    padding: 0 15px;
+}
+.logo{
+    margin: auto 0;
+    width: 180px;
+    height: 70%;
+    text-align: right;
+    background-image: url(../media/img/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 35px;
+    line-height: 47px;
+    font-family: Fashion;
+    color: #1f4971;
+}
+button{
+    border-radius: 0;
+    border: 0;
+    background-color: #fff;
+    font-size: 18px;
+    color: #2e97fc;
+    border: 3px solid #1a77d1;
+    border-left: 1px solid #2e97fc;
+    border-top: 1px solid #2e97fc;
+    padding: 10px 20px 7px;
+    margin: 10px;
+}
+button:hover,
+button:active{
+    background-color: #e4f2ff;
+}
+section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+article{
+    background-color: #fff;
+    padding: 30px 40px;
+    margin: 20px;
+    box-shadow: 0 5px 8px 0px rgba(0,0,0,0.15);
+}
+h2{
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+}
+input{
+    padding: 10px 20px 7px;
+    font-size: 18px;
+    line-height: 25px;
+    border: 0.5px solid #2e97fc;
+    border-bottom: 2px solid #1a77d1;
+    border-radius: 0;
+    margin: 10px;
+    width: 300px;
+}
+::-webkit-input-placeholder {line-height: 25px;}
+::-moz-placeholder          {line-height: 25px;}/* Firefox 19+ */
+:-moz-placeholder           {line-height: 25px;}/* Firefox 18- */
+:-ms-input-placeholder      {line-height: 25px;}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+}

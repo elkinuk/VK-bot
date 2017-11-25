@@ -3,12 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>Elkin's app</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <button id="talk">Start/stop talking</button>
-        <button id="get">get data</button>
-        <button id="set">set data</button>
-
+        <div class="hue"></div>
+        <header>
+            <div class='logo'> SANDY</div>
+        </header>
+        <main>
+            <section>
+                <article>
+                    <button id="talk">Start/stop talking</button>
+                </article>
+                <article>
+                    <h2>Dобавь еще один ответ в базу</h2>
+                    <input type="text" placeholder="Phrase" id="phrase"/>
+                    <input type="text" placeholder="Answer" id="answer"/>
+                    <button id="add_answer">Add</button>
+                </article>
+            </section>
+        </main>
+        <foooter></footer>
         <script src="https://code.jquery.com/jquery-2.0.0.js"></script>
         <script src="js/index.js"></script>
     </body>
