@@ -87,34 +87,32 @@ header{
     font-family: Fashion;
     color: #1f4971;
 }
-button{
-    border-radius: 0;
-    border: 0;
-    background-color: #fff;
-    font-size: 18px;
-    color: #2e97fc;
-    border: 3px solid #1a77d1;
-    border-left: 1px solid #2e97fc;
-    border-top: 1px solid #2e97fc;
-    padding: 10px 20px 7px;
-    margin: 10px;
-}
-button:hover,
-button:active{
-    background-color: #e4f2ff;
-}
-section{
+main{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
 }
-article{
+section{
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     background-color: #fff;
-    padding: 30px 40px;
+    padding: 30px 40px 20px;
     margin: 20px;
     box-shadow: 0 5px 8px 0px rgba(0,0,0,0.15);
+}
+article{
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+	border-top: 1px solid #eee;
+	padding: 10px 0;
 }
 h2{
     font-size: 20px;
@@ -122,15 +120,36 @@ h2{
     text-align: center;
     margin-bottom: 20px;
 }
-input{
-    padding: 10px 20px 7px;
+button,
+input,
+textarea{
+	padding: 10px 20px 7px;
     font-size: 18px;
     line-height: 25px;
-    border: 0.5px solid #2e97fc;
+    border: 0;
+	border-radius: 0;
+	margin: 10px;
+}
+button{
+    background-color: #fff;
+    color: #2e97fc;
+    border: 3px solid #1a77d1;
+    border-left: 1px solid #2e97fc;
+    border-top: 1px solid #2e97fc;
+}
+button:hover,
+button:active{
+    background-color: #e4f2ff;
+}
+input{
     border-bottom: 2px solid #1a77d1;
-    border-radius: 0;
-    margin: 10px;
     width: 300px;
+}
+textarea{
+	resize: vertical;
+	border: 1px solid #1a77d1;
+	border-bottom: 2px solid #1a77d1;
+	min-height: 100px;
 }
 ::-webkit-input-placeholder {line-height: 25px;}
 ::-moz-placeholder          {line-height: 25px;}/* Firefox 19+ */

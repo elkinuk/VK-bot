@@ -1,10 +1,16 @@
 import {Bot} from './bot.js'
-import {App} from './app.js'
+import {Admin} from './admin.js'
 
 $('#talk').on('click', Bot.start_talking);
 
-$('#add_answer').on('click', function(){
-    App.add_answer($('#phrase').val(),$('#answer').val());
+$('#dispatch').on('click',function(){
+     Bot.dispatch($('#dispatch_phrase').val());
 });
 
-console.log('Server running on port 8080');
+$('#add_answer').on('click', function(){
+    Admin.add_answer($('#phrase').val(),$('#answer').val());
+    $('#phrase').val('');
+    $('#answer').val('');
+});
+
+console.log('Server running on port 8000');
