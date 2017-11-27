@@ -6,7 +6,7 @@ export class Admin{
 			App.require_to_bd('insert?', $.param({
 				table: 'Dialogs',
 				field: 'phrase, answer',
-				value: [App.convert(phrase),answer].join('","')
+				val: [App.convert(phrase),answer].join('","')
 			}));
 			console.log(`Клиент:"${App.convert(phrase)}" - Бот:"${answer}"`);
 		}
