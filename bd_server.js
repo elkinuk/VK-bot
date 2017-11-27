@@ -23,7 +23,7 @@ function accept(req, res) { //основная функция обработки
     if (url == "") url = req.url; //если просто гет
     switch (url) {
         case '/select':
-            console.log('select');
+            console.log('--------select');
             db_select({
                 res: res,
                 table: par.table,
@@ -36,12 +36,26 @@ function accept(req, res) { //основная функция обработки
             });
             break;
         case '/insert':
-            console.log('insert');
+            console.log('--------insert');
             db_insert({
                 res: res,
                 table: par.table,
                 field: par.field,
-                val: `"${par.value}"`
+                val: `"${par.val}"`
+            });
+            break;
+        case '/update':
+            console.log('--------update');//res, table, field, val, wfield, wval
+            db_update({
+                res: res,
+                table: par.table,
+                field: par.field,
+                val: `${par.val}`,
+                wfield: par.wfield,
+                wval: `"${par.wval}"`,
+                callback: function (results) {
+                    return JSON.stringify(results);
+                }
             });
             break;
         default:
@@ -72,24 +86,13 @@ function db_insert(args) { //field, table, res, val
         });
 }
 
-function db_update(res, table, field, val, wfield, wval) {
-    connection.query('update ' + table + ' set ' + field + '="' + val + '" where ' + wfield + '=' + wval,
+function db_update(args) {
+    connection.query('update ' + args.table + ' set ' + args.field + '="' + args.val + '" where ' + args.wfield + '=' + args.wval,
         function (error, results, fields) {
             if (error) throw error;
-            res.end('okay');
+            args.res.end('okay');
             console.log('Successful UPDATE');
         });
-}
-
-function db_edit(res, table, field, val, id) {
-    db_select(res, table, '*', function (results) {
-        for (let i = 0; i < results.length; i++)
-            if (results[i].user_ID == id) {
-                db_update(res, table, field, val, 'user_ID', id);
-                console.log('Successful EDIT');
-                return null;
-            }
-    });
 }
 
 // ------ этот код запускает веб-сервер -------
