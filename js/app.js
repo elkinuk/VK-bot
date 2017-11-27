@@ -24,4 +24,25 @@ export class App {
 	static get_ids(str){
 		return str.replace(/["'\[\]{}:]/g,'').replace(/id/g,'').split(',');
 	}
+	static change_subscription(uid,value){
+        App.require_to_bd('update?', $.param({
+            table: 'Users',
+            field: 'subscription',
+            val: value,
+            wfield: 'id',
+            wval: uid
+        }));
+		let val = value==0 ? 'подписали' : 'отписали';
+		console.log(`Вы успешно ${val} пользователя id${uid}`);
+    }
+	static add_user(uid) {
+		if(uid){
+			App.require_to_bd('insert?', $.param({
+				table: 'Users',
+				field: 'id',
+				val: uid
+			}));
+			console.log(`В базу дабвлен пользователь с id ${uid}`);
+		}
+	}
 }

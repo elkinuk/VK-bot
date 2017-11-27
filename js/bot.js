@@ -69,30 +69,26 @@ export class Bot{
             case '/help':
                 str =  `Вот список доступных команд:\n
                     /help - вывести список доступных команд
+                    /add - добавить вас в список пользователей
                     /unsubscribe - отпиаться от рассылки
                     /subscribe - подписаться на рассылку
                 `;
                 break;
+            case '/add':
+                App.add_user(uid);
+                str = 'Вы успешно добавлены в базу';
+                break;
             case '/unsubscribe':
-                Bot.change_subscription(uid,'1');
+                App.change_subscription(uid,'1');
                 str = 'Вы успешно отписаны от рекламной рассылки';
                 break;
             case '/subscribe':
-                Bot.change_subscription(uid,'0');
+                App.change_subscription(uid,'0');
                 str = 'Вы успешно подписаны на рекламную рассылку';
                 break;
             default: str = 'Прости, но я не знаю такой команды, отправь /help чтобы получить весь список команд';
         }
         Bot.send_message(uid, str);
         console.log('Клиент написал: ' + command + '\nБот ответил: ' + str);
-    }
-    static change_subscription(uid,value){
-        App.require_to_bd('update?', $.param({
-            table: 'Users',
-            field: 'subscription',
-            val: value,
-            wfield: 'id',
-            wval: uid
-        }));
     }
 }
