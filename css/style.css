@@ -62,9 +62,8 @@ table {
 body{
     background-color: #63AEC9;
     background: linear-gradient(45deg,#95c2e1,#156FAC);
-	background-size: 100% 300%;
-    /*background-size: 2600% 2600%;
-    animation: AnimationName 140s linear infinite;*/
+    background-size: 600% 600%;
+    /*animation: AnimationName 40s linear infinite;*/
 }
 header{
     background-color: #fff;
@@ -93,6 +92,7 @@ main{
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
+	padding-right: 300px;
 }
 section{
 	display: flex;
@@ -141,6 +141,16 @@ button:hover,
 button:active{
     background-color: #e4f2ff;
 }
+button.del{
+	font-size: 15px;
+	border-color: #d13d4b;
+	color: #d13d4b;
+	padding: 5px 10px 2px;
+}
+button.del:hover,
+button.del:active{
+	background-color: #f8dcde;
+}
 input{
     border-bottom: 2px solid #1a77d1;
     width: 300px;
@@ -155,6 +165,69 @@ textarea{
 ::-moz-placeholder          {line-height: 25px;}/* Firefox 19+ */
 :-moz-placeholder           {line-height: 25px;}/* Firefox 18- */
 :-ms-input-placeholder      {line-height: 25px;}
+
+aside {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	right: 0;
+	background-color: #333;
+	overflow-y: scroll;
+}
+aside h2{
+	font-size: 20px;
+	font-family: Fashion;
+	color: #fff;
+	padding: 20px;
+	text-align: left;
+	line-height: 30px;
+	background-color: #222;
+}
+aside > div{
+	margin: 0 10px 20px;
+}
+aside > div p{
+	font-family: Helvetica;
+	color: #777;
+	font-weight: 100;
+	border-bottom: 1px solid #444;
+	padding: 5px 0;
+}
+aside > div p.imp{
+	font-weight: 500;
+	color: #b8dcff;
+}
+aside > div p.high{
+	color: #ccc;
+}
+aside > div p.error{
+	font-weight: 500;
+	color: #c77b7b;
+}
+article{
+	max-height: 500px;
+	overflow-y: scroll;
+}
+table{
+	margin: 15px 0 5px;
+}
+td,th{
+	padding: 5px 10px;
+	border: 1px solid #96ccff;
+	text-align:left;
+	word-wrap:break-word;
+	line-height: 25px;
+	font-size: 13px;
+}
+tr td:last-child{
+	border: 0;
+	padding: 0;
+}
+th{
+	font-weight: 500;
+	background-color: #e1f0ff;
+	text-align: center;
+}
 @keyframes AnimationName {
     0%{background-position:0% 50%}
    50%{background-position:100% 50%}

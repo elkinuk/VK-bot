@@ -45,17 +45,23 @@ function accept(req, res) { //основная функция обработки
             });
             break;
         case '/update':
-            console.log('--------update');//res, table, field, val, wfield, wval
+            console.log('--------update');
             db_update({
                 res: res,
                 table: par.table,
                 field: par.field,
                 val: `${par.val}`,
                 wfield: par.wfield,
-                wval: `"${par.wval}"`,
-                callback: function (results) {
-                    return JSON.stringify(results);
-                }
+                wval: `"${par.wval}"`
+            });
+            break;
+        case '/delete':
+            console.log('--------delete');
+            db_delete({
+                res: res,
+                table: par.table,
+                wfield: par.wfield,
+                wval: `"${par.wval}"`
             });
             break;
         default:
@@ -77,8 +83,8 @@ function db_select(args) { //fields, table, res, callback, wfield, wval
         });
 }
 
-function db_insert(args) { //field, table, res, val
-    connection.query('INSERT INTO ' + args.table + ' (' + args.field + ') VALUES (' + args.val + ')',
+function db_insert(args) {
+    connection.query(`INSERT INTO ${args.table} (${args.field}) VALUES (${args.val})`,
         function (error, results, fields) {
             if (error) throw error;
             args.res.end('okay');
@@ -86,8 +92,17 @@ function db_insert(args) { //field, table, res, val
         });
 }
 
+function db_delete(args) {
+    connection.query(`DELETE FROM ${args.table} WHERE ${args.wfield} = ${args.wval}`,
+        function (error, results, fields) {
+            if (error) throw error;
+            args.res.end('okay');
+            console.log('Successful DELETE');
+        });
+}
+
 function db_update(args) {
-    connection.query('update ' + args.table + ' set ' + args.field + '="' + args.val + '" where ' + args.wfield + '=' + args.wval,
+    connection.query(`UPDATE ${args.table} SET ${args.field}="${args.val}" where ${args.wfield}=${args.wval}`,
         function (error, results, fields) {
             if (error) throw error;
             args.res.end('okay');
@@ -97,7 +112,7 @@ function db_update(args) {
 
 // ------ этот код запускает веб-сервер -------
 if (!module.parent) {
-    http.createServer(accept).listen(8080); //запуск сервера на порту 8080
+    http.createServer(accept).listen(8080);
     console.log('Server started');
 } else {
     exports.accept = accept;

@@ -33,16 +33,63 @@ export class App {
             wval: uid
         }));
 		let val = value==0 ? 'подписали' : 'отписали';
-		console.log(`Вы успешно ${val} пользователя id${uid}`);
+		App.consoleLog(`Вы успешно ${val} пользователя id${uid}`);
     }
 	static add_user(uid) {
 		if(uid){
-			App.require_to_bd('insert?', $.param({
-				table: 'Users',
-				field: 'id',
-				val: uid
-			}));
-			console.log(`В базу дабвлен пользователь с id ${uid}`);
+			App.require_to_bd('select?', $.param({
+                table: 'Users',
+                fields: 'id',
+                wfield: 'id',
+                wval: uid
+            }), (xhr) => {
+				if(JSON.parse(xhr.responseText).length!=0){
+					//console.log('------' + JSON.parse(xhr.responseText).length);
+					App.change_subscription(uid,'0');
+				}else {
+					App.require_to_bd('insert?', $.param({
+						table: 'Users',
+						field: 'id',
+						val: uid
+					}));
+					App.consoleLog(`В базу дабвлен пользователь с id ${uid}`);
+				}
+			});
+		}else App.consoleLog(`А где ID пользователя???`,'error');
+	}
+	static remove_user(uid) {
+		if(uid){
+			App.require_to_bd('select?', $.param({
+                table: 'Users',
+                fields: 'id',
+                wfield: 'id',
+                wval: uid
+            }), (xhr) => {
+				if(JSON.parse(xhr.responseText).length==0){
+					App.consoleLog(`Пользователя с id${uid} нет в базе`,'error');
+				}else {
+					App.change_subscription(uid,'1');
+				}
+			});
+		}else App.consoleLog(`А где ID пользователя???`,'error');
+	}
+	static consoleLog(text, style){
+		$('#content').html($('#content').html() + `<p class='${style}'>${text}</p>`);
+	}
+	static to_table(arr){
+		let str='';
+		for(let i=0;i<arr.length;i++){
+			str +='<tr>';
+			for(let j in arr[i]){
+				if(arr[i][j] == null) arr[i][j]='';
+				if(j=='subscription' && arr[i][j]=='1') arr[i][j]='Отписан';
+				if(j=='subscription' && arr[i][j]=='0') arr[i][j]='Подписан';
+				if (j=='first_name') str += '<td>'+arr[i][j];
+				else if (j=='last_name') str += ' '+arr[i][j]+'</td>';
+				else str += '<td>'+arr[i][j]+'</td>';
+			}
+			str +=`<td><button class="del" data-uid="${arr[i].id}">Удалить</button></td></tr>`;
 		}
+		return str;
 	}
 }

@@ -6,40 +6,59 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="hue"></div>
+        <aside>
+            <h2>Console</h2>
+            <div id="content"></div>
+        </aside>
         <header>
             <div class='logo'> SANDY</div>
         </header>
         <main>
             <section>
-                <h2>Make the bot talk</h2>
+                <h2>Заставь бота говорить</h2>
                 <article>
-                    <button id="talk">Start/stop talking</button>
+                    <button id="talk">Начать/прекратить болтать</button>
                 </article>
                 <article>
-                    <textarea placeholder="Phrase" id="dispatch_phrase"></textarea>
-                    <button id="dispatch">Dispatch</button>
+                    <textarea placeholder="Фраза" id="dispatch_phrase"></textarea>
+                    <button id="dispatch">Разослать</button>
                 </article>
             </section>
             <section>
                 <h2>Dобавь еще один ответ в базу</h2>
                 <article>
-                    <input type="text" placeholder="Phrase" id="phrase"/>
-                    <input type="text" placeholder="Answer" id="answer"/>
-                    <button id="add_answer">Add</button>
+                    <input type="text" placeholder="Фраза" id="phrase"/>
+                    <input type="text" placeholder="Ответ" id="answer"/>
+                    <button id="add_answer">Добавить</button>
                 </article>
             </section>
             <section>
                 <h2>Dобавь еще одного пользователя в базу</h2>
                 <article>
-                    <input type="text" placeholder="User id" id="user_id"/>
-                    <button id="add_user">Add</button>
-                    <button id="subscribe_user">Subscribe</button>
-                    <button id="unsubscribe_user">Unsubscribe</button>
+                    <input type="text" placeholder="ID пользователя" id="user_id"/>
+                    <button id="subscribe_user">Подписать/добавить</button>
+                    <button id="unsubscribe_user">Отписать</button>
                 </article>
             </section>
+            <section>
+                <h2 style="margin-bottom:0;">Просмотрите всех пользователей</h2>
+                <button id="refresh_users">Обновить</button>
+                <article>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>VK ID</th>
+                                <th>Имя</th>
+                                <th>Адрес</th>
+                                <th>Рассылка</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users_data"></tbody>
+                    </table>
+                    <article>
+            </section>
         </main>
-        <foooter></footer>
+        <footer></footer>
         <script src="https://code.jquery.com/jquery-2.0.0.js"></script>
         <script src="js/index.js"></script>
     </body>
