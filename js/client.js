@@ -26,9 +26,26 @@ $('#unsubscribe_user').on('click', function(){
 $('#refresh_users').on('click', function(){
     Admin.refresh_users($('#users_data'));
 });
-
 $('table').on('click','.del',function(){
     Admin.del_user($(this).attr('data-uid'));
     setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
 })
+$('table').on('click','.unsub',function(){
+    App.remove_user($(this).attr('data-uid'));
+    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
+})
+$('table').on('click','.sub',function(){
+    App.change_subscription($(this).attr('data-uid'),'0');
+    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
+})
+$('#clean_cons').on('click',function(){
+     $('#content').html('');
+});
+
+$('#get_orders').on('click',Bot.start_reacting);
+
 App.consoleLog('Server running on port 8000');
+
+window.onload = function(){
+    Admin.refresh_users($('#users_data'));
+}

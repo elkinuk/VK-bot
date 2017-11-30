@@ -55,7 +55,8 @@ table {
    }
 
  *{
-     font-family: Fashion;
+     font-family: Helvetica;
+	 font-weight: 100;
      box-sizing: border-box;
      color: #1f4971;
  }
@@ -86,13 +87,16 @@ header{
     font-family: Fashion;
     color: #1f4971;
 }
+h1,h2,h3,h4,h5,h6{
+	font-family: Fashion;
+}
 main{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
-	padding-right: 300px;
+	padding-right: 25%;
 }
 section{
 	display: flex;
@@ -120,10 +124,16 @@ h2{
     text-align: center;
     margin-bottom: 20px;
 }
+h2+p{
+	font-size: 15px;
+	color: #aaa;
+	margin-top: -10px;
+	margin-bottom: 20px;
+}
 button,
 input,
 textarea{
-	padding: 10px 20px 7px;
+	padding: 9px 20px 10px;
     font-size: 18px;
     line-height: 25px;
     border: 0;
@@ -141,11 +151,35 @@ button:hover,
 button:active{
     background-color: #e4f2ff;
 }
-button.del{
+button.del,
+button.unsub,
+button.sub,
+button.console_btn{
 	font-size: 15px;
+	padding: 2px 10px 3px;
+	margin: 5px 0 5px 10px;
+}
+button.sub{
+	border-color: #459c57;
+	color: #459c57
+}
+button.del i{
+	color: #459c57;
+}
+button.del{
 	border-color: #d13d4b;
 	color: #d13d4b;
-	padding: 5px 10px 2px;
+}
+button.del i{
+	color: #d13d4b;
+}
+button.console_btn{
+	border: 0;
+	background-color: #444;
+	color: #fff;
+}
+button.console_btn:hover{
+	background-color: #555;
 }
 button.del:hover,
 button.del:active{
@@ -157,18 +191,19 @@ input{
 }
 textarea{
 	resize: vertical;
+	overflow-x: hidden;
 	border: 1px solid #1a77d1;
 	border-bottom: 2px solid #1a77d1;
 	min-height: 100px;
 }
-::-webkit-input-placeholder {line-height: 25px;}
-::-moz-placeholder          {line-height: 25px;}/* Firefox 19+ */
-:-moz-placeholder           {line-height: 25px;}/* Firefox 18- */
-:-ms-input-placeholder      {line-height: 25px;}
+::-webkit-input-placeholder {color: #ccc}
+::-moz-placeholder          {color: #ccc}/* Firefox 19+ */
+:-moz-placeholder           {color: #ccc}/* Firefox 18- */
+:-ms-input-placeholder      {color: #ccc}
 
 aside {
 	height: 100%;
-	width: 300px;
+	width: 25%;
 	position: fixed;
 	right: 0;
 	background-color: #333;
@@ -204,7 +239,7 @@ aside > div p.error{
 	font-weight: 500;
 	color: #c77b7b;
 }
-article{
+article.with_table{
 	max-height: 500px;
 	overflow-y: scroll;
 }
@@ -219,9 +254,14 @@ td,th{
 	line-height: 25px;
 	font-size: 13px;
 }
-tr td:last-child{
+tr td:last-child,
+tr td:nth-last-child(2),
+tr td:nth-last-child(3){
 	border: 0;
 	padding: 0;
+}
+tr:hover{
+	background-color: #e1f0ff;
 }
 th{
 	font-weight: 500;

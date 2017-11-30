@@ -10,6 +10,7 @@ var connection = mysql.createConnection({
     password: '',
     database: 'dbname'
 });
+let buffer = [];
 
 function accept(req, res) { //основная функция обработки
     let url = "",
@@ -64,13 +65,18 @@ function accept(req, res) { //основная функция обработки
                 wval: `"${par.wval}"`
             });
             break;
+        case '/setOrder':
+            console.log('--------set order');
+            buffer.push({name: par.name,email: par.email,link: par.link,details: par.details});
+            break;
+        case '/getOrder':
+            console.log('--------get order');
+            res.end('' + JSON.stringify(buffer));
+            buffer = [];
+            break;
         default:
             file.serve(req, res);
     }
-}
-
-function date_format(date) {
-    return (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()).toString();
 }
 
 function db_select(args) { //fields, table, res, callback, wfield, wval
@@ -78,7 +84,7 @@ function db_select(args) { //fields, table, res, callback, wfield, wval
     connection.query(`SELECT ${args.fields} FROM ${args.table} WHERE ${where_condition}`,
         function (error, results, fields) { //бд запрос (функция для обработки данных и ошибок)
             if (error) throw error;
-            args.res.end('' + args.callback(results)); //формирование сообщения для отправки клиенту (массив результатов вида results[i].user_login)
+            args.res.end('' + args.callback(results)); //формирование сообщения для отправки клиенту
             console.log('Successful SELECT');
         });
 }

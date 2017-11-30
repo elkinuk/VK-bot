@@ -1,0 +1,652 @@
+/*///////////////////////Basic///////////////////////*/
+
+/*html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+}
+body {
+    font-family: Helvetica;
+    color: #333;
+    background-color: #ebebea;
+    height: 100%;
+    width: 100%;
+}*/
+.calculator{
+    height: 140%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+    font-family: Helvetica;
+    color: #333;
+    align-items: center;
+    /*background-color: #ebebea;*/
+}
+
+/*///////////////////////______ ///////////////////////*/
+ .calculator .popover {max-width:400px;}
+
+ .calculator #popover-content-logout > * {
+  background-color:#ff0000 !important;
+}
+ .calculator .container{
+    min-width: 700px;
+}
+ .calculator hr {
+    border: none;
+    color: #56606c;
+    background-color: #56606c;
+    height: 0.5px;
+}
+ .calculator .btn-light {
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+}
+
+ .calculator label {
+    margin: 0 0 10px;
+    font-weight: 400;
+}
+
+ .calculator label[for="box_types"]{
+    color: #999;
+    font-size: 12px;
+}
+
+/*///////////////////////Form///////////////////////*/
+
+ .calculator form {
+    min-width: 250px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+    margin: 0 auto 40px;
+    padding: 30px 40px 10px;
+}
+ .calculator form .btn-light{
+    margin: 20px auto;
+}
+ .calculator fieldset:not(fieldset:last-child){
+    padding-bottom: 10px;
+}
+ .calculator fieldset:not(fieldset:first-child){
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+ .calculator #box-fieldset{
+    display: none;
+}
+ .calculator #back-fieldset{
+    display: none;
+}
+ .calculator p {
+    color: #f14a4a;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+ .calculator p#result{
+    color: #4aa167;
+    margin-bottom: 20px;
+}
+ .calculator p b{
+    font-weight: 900;
+}
+ .calculator p span{
+    color: #f14a4a;
+}
+ .calculator p small{
+    color:#bbb;
+    font-size: 11px;
+}
+ .calculator p big{
+    color:#333;
+    font-size: 25px;
+    border-bottom: 1px dotted #333;
+}
+ .calculator .form-control {
+    border-radius: 2px;
+    border: 1px solid #ddd;
+}
+ .calculator textarea.form-control{
+    resize: none;
+}
+ .calculator h2{
+    margin: 20px 0 10px;
+    text-align: center;
+    font-weight: 100;
+    font-size: 25px;
+}
+ .calculator select{
+    border-radius: 0px;
+}
+ .calculator i{
+    color:#bbb;
+}
+ .calculator .color-palette{
+    height: 44px;
+    overflow:hidden;
+}
+ .calculator .color-palette:hover{
+    height: 105px;
+}
+ .calculator .color-palette table{
+    width: 100%;
+}
+ .calculator .color-palette table tr td{
+    border: 4px solid #eee;
+    height: 20px;
+    cursor: pointer;
+    background-color: #fb8686;
+}
+ .calculator .color-palette table tr td:hover{
+    opacity: 0.8;
+}
+/*1*/
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(1){
+    background-color: #eee;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(2){
+    background-color: #fff;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(3){
+    background-color: #cc830f;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(4){
+    background-color: #efc93e;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(5){
+    background-color: #fed633;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(6){
+    background-color: #feeb3a;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(7){
+    background-color: #fffa39;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(8){
+    background-color: #681116;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(9){
+    background-color: #80101b;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(10){
+    background-color: #a01b28;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(11){
+    background-color: #c91016;
+}
+ .calculator .color-palette table tr:nth-child(1) td:nth-child(12){
+    background-color: #ea0f19;
+}
+/*2*/
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(1){
+    background-color: #f7151b;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(2){
+    background-color: #fc551f;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(3){
+    background-color: #f77e31;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(4){
+    background-color: #fd8a25;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(5){
+    background-color: #3e2465;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(6){
+    background-color: #5a396b;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(7){
+    background-color: #7a579e;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(8){
+    background-color: #b494c4;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(9){
+    background-color: #c82765;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(10){
+    background-color: #fd92c1;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(11){
+    background-color: #000232;
+}
+ .calculator .color-palette table tr:nth-child(2) td:nth-child(12){
+    background-color: #060947;
+}
+/*3*/
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(1){
+    background-color: #101358;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(2){
+    background-color: #131a62;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(3){
+    background-color: #101f6a;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(4){
+    background-color: #2031a3;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(5){
+    background-color: #094975;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(6){
+    background-color: #0e4c85;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(7){
+    background-color: #074985;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(8){
+    background-color: #155794;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(9){
+    background-color: #185e9d;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(10){
+    background-color: #1c79c0;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(11){
+    background-color: #399fda;
+}
+ .calculator .color-palette table tr:nth-child(3) td:nth-child(12){
+    background-color: #7fcbea;
+}
+/*4*/
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(1){
+    background-color: #188992;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(2){
+    background-color: #29a5ae;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(3){
+    background-color: #69e4da;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(4){
+    background-color: #0e4b0f;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(5){
+    background-color: #1c5c1c;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(6){
+    background-color: #227929;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(7){
+    background-color: #127a2a;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(8){
+    background-color: #209d30;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(9){
+    background-color: #37c829;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(10){
+    background-color: #8cf23c;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(11){
+    background-color: #3c3c26;
+}
+ .calculator .color-palette table tr:nth-child(4) td:nth-child(12){
+    background-color: #b5643d;
+}
+/*5*/
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(1){
+    background-color: #b99453;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(2){
+    background-color: #eae0b8;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(3){
+    background-color: #f4eb97;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(4){
+    background-color: #000;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(5){
+    background-color: #494949;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(6){
+    background-color: #7b7b7b;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(7){
+    background-color: #8f8f8f;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(8){
+    background-color: #a3a3a3;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(9){
+    background-color: #e1e1e1;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(10){
+    background-color: #d1d1d5;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(11){
+    background-color: #c09e2e;
+}
+ .calculator .color-palette table tr:nth-child(5) td:nth-child(12){
+    background-color: #a46c2b;
+}
+ .calculator .result-box{
+    min-height: 150px;
+}
+
+ .calculator .result-box div{
+    font-size: 60px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+ .calculator #output_text3{
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    box-sizing: content-box;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    visibility: hidden;
+    display: inline-block;
+    z-index: -1000;
+}
+ .calculator .my-flex-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-top: 0px;
+    padding-top: 52px;
+}
+ .calculator #output_text2{
+    color: rgba(0,0,0,0);
+    line-height: 0px;
+}
+ .calculator #output_text1{
+    margin-top: -0.7em
+}
+
+ .calculator .letter_style10{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    color: #fff;
+}
+ .calculator .letter_style11{
+    text-shadow:
+                0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 6px rgba(44,247,29,.1),
+               0 0 15px rgba(44,247,29,.1),
+               0 1px 8px rgba(44,247,29,.3),
+               0 3px 10px rgba(44,247,29,.2),
+               0 5px 20px rgba(44,247,29,.25),
+               0 10px 20px rgba(44,247,29,.2),
+               0 20px 30px rgba(44,247,29,.15),
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    color: #eee;
+}
+ .calculator .letter_style12{
+    text-shadow:0 0 3px #fff,
+                0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 6px rgba(146,205,255,.1),
+               0 0 15px rgba(146,205,255,.1),
+               0 1px 8px rgba(146,205,255,.3),
+               0 3px 10px rgba(146,205,255,.2),
+               0 5px 20px rgba(146,205,255,.25),
+               0 10px 20px rgba(146,205,255,.2),
+               0 20px 30px rgba(146,205,255,.15),
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    color: #fff;
+}
+ .calculator .letter_style13{
+    background: linear-gradient(#969696,#d5d5d5,#969696);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.calculator .letter_style23{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+}
+.calculator .letter_style14{
+    background: radial-gradient(#fff 1px, #bbb 1px);
+    background-size: 3px 3px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.calculator .letter_style24{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+}
+.calculator .letter_style15{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    color: #fff;
+}
+.calculator .letter_style16{
+    background: linear-gradient(270deg, #42adff, #3ede64, #ddde3e);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    -webkit-animation: AnimationName 1s ease infinite;
+    -moz-animation: AnimationName 1s ease infinite;
+    animation: AnimationName 1s ease infinite;
+}
+.calculator .letter_style26{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+}
+.calculator .letter_style17{
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    color: #d1d1d1;
+}
+.calculator .letter_style18{
+    text-shadow: 0px 2px 0px #ccc,
+                 0px 5px 10px rgba(0,0,0,0.15),
+                 0px 12px 2px rgba(0,0,0,0.1),
+                 0px 15px 30px rgba(0,0,0,0.1);
+
+
+    color: #fff;
+}
+.calculator .letter_style19{
+    -webkit-text-stroke: 1px #ddd;
+    color: #fff;
+}
+
+.calculator .letter_style30,
+.calculator .letter_style31,
+.calculator .letter_style32,
+.calculator .letter_style33,
+.calculator .letter_style34,
+.calculator .letter_style35,
+.calculator .letter_style36,
+.calculator .letter_style37,
+.calculator .letter_style38,
+.calculator .letter_style39{
+    -webkit-text-stroke: 1px #ddd;
+    padding: 0 0.5em;
+    color: #fff;
+    box-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+}
+.calculator .letter_style30{
+    border: 3px solid #aaa;
+}
+.calculator .letter_style31{
+    -webkit-text-stroke: 0.06em #ddd;
+    text-shadow: 0 1px 0 #aaa,
+               0 2px 0 #a9a9a9,
+               0 3px 0 #999,
+               0 4px 0 #898989,
+               0 5px 0 #888,
+               0 1px 1px rgba(0,0,0,.1),
+               0 0 3px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.25),
+               0 5px 5px rgba(0,0,0,.2),
+               0 5px 5px rgba(0,0,0,.15);
+    box-shadow: none;
+}
+.calculator .letter_style32,
+.calculator .letter_style37{
+}
+.calculator .letter_style33,
+.calculator .letter_style38{
+               text-shadow: 0 1px 0 #aaa,
+                          0 2px 0 #a9a9a9,
+                          0 3px 0 #999,
+                          0 4px 0 #898989,
+                          0 5px 0 #888,
+                          0 1px 1px rgba(0,0,0,.1),
+                          0 0 3px rgba(0,0,0,.1),
+                          0 1px 3px rgba(0,0,0,.3),
+                          0 3px 5px rgba(0,0,0,.2),
+                          0 5px 5px rgba(0,0,0,.25),
+                          0 5px 5px rgba(0,0,0,.2),
+                          0 5px 5px rgba(0,0,0,.15);
+}
+.calculator .letter_style34{
+box-shadow:0 0 3px #fff,
+            0 1px 0 #ccc,
+           0 2px 0 #c9c9c9,
+           0 3px 0 #bbb,
+           0 4px 0 #b9b9b9,
+           0 5px 0 #aaa,
+           0 6px 6px rgba(146,205,255,.1),
+           0 0 15px rgba(146,205,255,.1),
+           0 1px 8px rgba(146,205,255,.3),
+           0 3px 10px rgba(146,205,255,.2),
+           0 5px 20px rgba(146,205,255,.25),
+           0 10px 20px rgba(146,205,255,.2),
+           0 20px 30px rgba(146,205,255,.15),
+           0 1px 1px rgba(0,0,0,.1),
+           0 0 3px rgba(0,0,0,.1),
+           0 1px 3px rgba(0,0,0,.3),
+           0 3px 5px rgba(0,0,0,.2),
+           0 5px 5px rgba(0,0,0,.25),
+           0 5px 5px rgba(0,0,0,.2),
+           0 5px 5px rgba(0,0,0,.15);
+       }
+
+           .calculator .letter_style35{
+               border-radius: 0.2em;
+           }
+.calculator .letter_style36{
+           border-radius: 2em;
+       }
+     .calculator .letter_style39{
+       background: radial-gradient(#fff 1px, rgba(0,0,0,0.1) 1px);
+       background-size: 3px 3px;
+   }
+.calculator .box_style10{
+    background-color: #f3f3f3;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

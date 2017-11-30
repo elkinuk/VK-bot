@@ -2,12 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Elkin's app</title>
+        <title>SANDY</title>
+        <link rel="shortcut icon" href="media/img/favicon.png" type="image/png">
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://use.fontawesome.com/e6d7c7a1b4.js"></script>
     </head>
     <body>
         <aside>
-            <h2>Console</h2>
+            <h2>Console <button id="clean_cons" class="console_btn">Очистить</button></h2>
             <div id="content"></div>
         </aside>
         <header>
@@ -25,6 +27,9 @@
                 </article>
             </section>
             <section>
+                <button id="get_orders">Начать принимать заказы</button>
+            </section>
+            <section>
                 <h2>Dобавь еще один ответ в базу</h2>
                 <article>
                     <input type="text" placeholder="Фраза" id="phrase"/>
@@ -34,21 +39,22 @@
             </section>
             <section>
                 <h2>Dобавь еще одного пользователя в базу</h2>
+                <p>или подпишите на рассылку имеющегося<p>
                 <article>
                     <input type="text" placeholder="ID пользователя" id="user_id"/>
                     <button id="subscribe_user">Подписать/добавить</button>
-                    <button id="unsubscribe_user">Отписать</button>
                 </article>
             </section>
             <section>
                 <h2 style="margin-bottom:0;">Просмотрите всех пользователей</h2>
                 <button id="refresh_users">Обновить</button>
-                <article>
+                <article class="with_table">
                     <table>
                         <thead>
                             <tr>
                                 <th>VK ID</th>
                                 <th>Имя</th>
+                                <th>Email</th>
                                 <th>Адрес</th>
                                 <th>Рассылка</th>
                             </tr>

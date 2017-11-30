@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Калькулятор</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/animate.css">
+	</head>
+	<body>
+		<style>
+			body {
+			    background-color: #ebebea;
+				height: 100%;
+			}
+		</style>
+		<div class="calculator">
+			<div class="container">
+				<div class="row">
+					<div class="result-box text-center">
+						<h2>Результат</h2>
+						<div class="output-block">
+							<div class="my-flex-container">
+								<div id="output_text2" class=""></div>
+								<div id="output_text1" class="letter_style10"></div>
+							</div>
+							<div id="output_text3" class=""></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" role="form">
+						<h2>Параметры вывески</h2>
+						<form>
+							<fieldset>
+								<div class="form-group">
+									<label>Введите текст вывески</label>
+									<input type="text" maxlength="26" class="form-control" id="phrase" placeholder="Бла-бла-бла">
+								</div>
+							</fieldset>
+							<fieldset>
+								<div class="form-group">
+									<label>Выберите тип букв</label>
+									<div class="form-check">
+										<label for="box_types">
+											<input class="form-check-input" type="checkbox" id="checkbox2">
+											Нужна подложка
+										</label>
+									</div>
+									<select  id="select_letter_type" type="select-one" class="form-control"></select>
+								</div>
+								<div class="form-group">
+									<label>Выберите цвет букв <i class="fa fa-caret-down" aria-hidden="true"></i></i></label>
+									<div class="color-palette">
+										<table id="color-palette-letters">
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+										</table>
+									</div>
+								</div>
+								<div class="form-group" id="letter-height-box">
+									<label>Введите высоту надписи в сантиметрах</label>
+									<input data-toggle="popover" data-container="body" data-placement="bottom" data-html="true" type="text" class="form-control" id="letter-height" placeholder="50">
+									<div id="popover-content-letter-height" class="hide"></div>
+								</div>
+								<div id="box-fieldset">
+									<div class="form-group">
+										<label>Выберите тип короба </label>
+
+										<select  id="select_box_type" type="select-one" class="form-control">
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Введите длину короба (в метрах погонных)</label>
+										<input type="text" class="form-control" id="box-square" placeholder="500">
+									</div>
+								</div>
+							</fieldset>
+							<fieldset id="back-fieldset">
+								<div class="form-group">
+									<label>Введите длину подложки (в сантиметрах)</label>
+									<input data-toggle="popover" data-container="body" data-placement="bottom" data-html="true" type="text" class="form-control" id="back-width" placeholder="1000">
+									<div id="popover-content-back-width" class="hide">
+										<p><span>Внимание!</span> По Постановлению №902.Длина одной вывески не может превышать 10 м. За консультацией обращайтесь к менеджеру.</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Введите высоту подложки (в сантиметрах)</label>
+									<input data-toggle="popover" data-container="body" data-placement="bottom" data-html="true" type="text" class="form-control" id="back-haight" placeholder="50">
+									<div id="popover-content-back-haight" class="hide">
+										<p><span>Внимание!</span> По Постановлению №902 высота подложки вывески на стене может быть не более 50 см. На фризе - 100% от высоты фриза.За консультацией обращайтесь к менеджеру.</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Выберите цвет подложки <i class="fa fa-caret-down" aria-hidden="true"></i></i></label>
+									<div class="color-palette">
+										<table id="color-palette-back">
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+											<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" role="form">
+						<h2>Оформление заказа</h2>
+						<form>
+							<p id="result">Здесь отобразится результат вашего выбора</p>
+							<fieldset>
+								<div class="form-group">
+									<label>Введите Ваше имя</label>
+									<input type="text" class="form-control" id="name_field" placeholder="Имя...">
+								</div>
+								<div class="form-group">
+									<label>Введите Ваш e-mail</label>
+									<input type="text" class="form-control" id="email_field" placeholder="E-mail...">
+								</div>
+								<div class="form-group">
+									<label>Вставьте ссылку на ваш ВК</label>
+									<input type="text" class="form-control" id="link_field" placeholder="Ссылка...">
+								</div>
+								<div class="form-group">
+									<label>Введите Ваш комментарий</label>
+									<textarea class="form-control" placeholder="Комментарий..." id="comment_field"></textarea>
+								</div>
+								<button type="button" class="btn btn-light center-block" id="send_out">Заказать</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="jquery/jquery.min.js"></script>
+		<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+		<script type="text/javascript" src="index.js"></script>
+		</body>
+		</html>

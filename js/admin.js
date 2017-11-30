@@ -8,7 +8,7 @@ export class Admin{
 				field: 'phrase, answer',
 				val: [App.convert(phrase),answer].join('","')
 			}));
-			App.consoleLog(`Клиент:"${App.convert(phrase)}" - Бот:"${answer}"`,'high');
+			App.consoleLog(`Вы добавили сочетание<br>Клиент:"${App.convert(phrase)}"<br>Бот:"${answer}"`,'high');
 		}
 	}
     static del_user(uid){
@@ -30,5 +30,6 @@ export class Admin{
             let html = App.to_table(JSON.parse(xhr.responseText));
             el.html(html);
         });
+        App.consoleLog('Таблица обновлена в ' + App.get_now(),'imp');
     }
 }

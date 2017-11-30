@@ -14,6 +14,10 @@ export class App {
 	static randomNum(max) {
 	    return Math.floor(0 + Math.random() * (max + 1 - 0));
   	}
+	static get_now(){
+		let now = new Date();
+		return `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} ${now.getDate()}/${now.getMonth()}/${now.getYear()}`
+	}
 	static convert(str){
 		str = str.toLowerCase().replace(/\s/g, '').replace(/[.,\/#!?$%\^&\*;:№"'\[\]@\\{}=\-_`~()]/g,'');
 		str = str.split('').filter(function(item,i,arr) {
@@ -25,18 +29,24 @@ export class App {
 		return str.replace(/["'\[\]{}:]/g,'').replace(/id/g,'').split(',');
 	}
 	static change_subscription(uid,value){
-        App.require_to_bd('update?', $.param({
-            table: 'Users',
-            field: 'subscription',
-            val: value,
-            wfield: 'id',
-            wval: uid
-        }));
-		let val = value==0 ? 'подписали' : 'отписали';
-		App.consoleLog(`Вы успешно ${val} пользователя id${uid}`);
+		if(uid && value!=undefined){
+	        App.require_to_bd('update?', $.param({
+	            table: 'Users',
+	            field: 'subscription',
+	            val: value,
+	            wfield: 'id',
+	            wval: uid
+	        }));
+			let val = value==0 ? 'подписали' : 'отписали';
+			App.consoleLog(`Вы успешно ${val} пользователя id${uid}`);
+		}
     }
-	static add_user(uid) {
+	static add_user(uid,first_name,last_name) {
 		if(uid){
+			if(first_name == undefined || last_name == undefined) {
+				first_name = null;
+				last_name = null
+			}
 			App.require_to_bd('select?', $.param({
                 table: 'Users',
                 fields: 'id',
@@ -49,8 +59,8 @@ export class App {
 				}else {
 					App.require_to_bd('insert?', $.param({
 						table: 'Users',
-						field: 'id',
-						val: uid
+						field: 'id,first_name,last_name',
+						val: [uid,first_name,last_name].join('","')
 					}));
 					App.consoleLog(`В базу дабвлен пользователь с id ${uid}`);
 				}
@@ -88,7 +98,22 @@ export class App {
 				else if (j=='last_name') str += ' '+arr[i][j]+'</td>';
 				else str += '<td>'+arr[i][j]+'</td>';
 			}
-			str +=`<td><button class="del" data-uid="${arr[i].id}">Удалить</button></td></tr>`;
+			str +=`
+			<td>
+				<button class="del" data-uid="${arr[i].id}">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</button>
+			</td>
+			<td>
+				<button class="unsub" data-uid="${arr[i].id}">
+					<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+				</button>
+			</td>
+			<td>
+				<button class="sub" data-uid="${arr[i].id}">
+					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+				</button>
+			</td></tr>`;
 		}
 		return str;
 	}
