@@ -1,9 +1,9 @@
 import {Bot} from './bot.js'
 import {App} from './app.js'
 import {Admin} from './admin.js'
+import {Sub} from './subsidary.js';
 
 $('#talk').on('click', Bot.start_talking);
-
 $('#dispatch').on('click',function(){
      Bot.dispatch($('#dispatch_phrase').val());
      $('#dispatch_phrase').val('');
@@ -14,38 +14,33 @@ $('#add_answer').on('click', function(){
     $('#answer').val('');
 });
 $('#subscribe_user').on('click', function(){
-    App.add_user($('#user_id').val(),'0');
+    App.add_user($('#user_id').val());
     $('#user_id').val('');
-    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
-});
-$('#unsubscribe_user').on('click', function(){
-    App.remove_user($('#user_id').val(),'1');
-    $('#user_id').val('');
-    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
 });
 $('#refresh_users').on('click', function(){
     Admin.refresh_users($('#users_data'));
 });
-$('table').on('click','.del',function(){
+$('#refresh_orders').on('click', function(){
+    Admin.refresh_orders($('#orders_data'));
+});
+$('table').on('click','.del_user',function(){
     Admin.del_user($(this).attr('data-uid'));
-    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
+})
+$('table').on('click','.del_order',function(){
+    Admin.del_order($(this).attr('data-id'));
 })
 $('table').on('click','.unsub',function(){
     App.remove_user($(this).attr('data-uid'));
-    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
 })
 $('table').on('click','.sub',function(){
     App.change_subscription($(this).attr('data-uid'),'0');
-    setTimeout(()=>{Admin.refresh_users($('#users_data'));},500);
 })
 $('#clean_cons').on('click',function(){
      $('#content').html('');
 });
-
 $('#get_orders').on('click',Bot.start_reacting);
 
-App.consoleLog('Server running on port 8000');
-
 window.onload = function(){
-    Admin.refresh_users($('#users_data'));
+    Sub.consoleLog('Server running on port 8000');
+    Admin.refresh_data(false);
 }

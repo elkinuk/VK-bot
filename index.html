@@ -22,16 +22,16 @@
                     <button id="talk">Начать/прекратить болтать</button>
                 </article>
                 <article>
+                    <button id="get_orders">Начать/прекратить принимать заказы</button>
+                </article>
+                <article>
                     <textarea placeholder="Фраза" id="dispatch_phrase"></textarea>
                     <button id="dispatch">Разослать</button>
                 </article>
             </section>
             <section>
-                <button id="get_orders">Начать принимать заказы</button>
-            </section>
-            <section>
                 <h2>Dобавь еще один ответ в базу</h2>
-                <article>
+                <article class="coll">
                     <input type="text" placeholder="Фраза" id="phrase"/>
                     <input type="text" placeholder="Ответ" id="answer"/>
                     <button id="add_answer">Добавить</button>
@@ -40,7 +40,7 @@
             <section>
                 <h2>Dобавь еще одного пользователя в базу</h2>
                 <p>или подпишите на рассылку имеющегося<p>
-                <article>
+                <article class="coll">
                     <input type="text" placeholder="ID пользователя" id="user_id"/>
                     <button id="subscribe_user">Подписать/добавить</button>
                 </article>
@@ -49,17 +49,34 @@
                 <h2 style="margin-bottom:0;">Просмотрите всех пользователей</h2>
                 <button id="refresh_users">Обновить</button>
                 <article class="with_table">
-                    <table>
+                    <table class="users">
                         <thead>
                             <tr>
                                 <th>VK ID</th>
                                 <th>Имя</th>
-                                <th>Email</th>
+                                <th>Телефон</th>
                                 <th>Адрес</th>
                                 <th>Рассылка</th>
                             </tr>
                         </thead>
                         <tbody id="users_data"></tbody>
+                    </table>
+                    <article>
+            </section>
+            <section>
+                <h2 style="margin-bottom:0;">Просмотрите все заказы</h2>
+                <button id="refresh_orders">Обновить</button>
+                <article class="with_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя</th>
+                                <th>Дата</th>
+                                <th>Детали</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders_data"></tbody>
                     </table>
                     <article>
             </section>

@@ -118,6 +118,10 @@ article{
 	border-top: 1px solid #eee;
 	padding: 10px 0;
 }
+.coll{
+	flex-direction: column;
+	align-items: center;
+}
 h2{
     font-size: 20px;
     font-weight: 900;
@@ -253,10 +257,15 @@ td,th{
 	word-wrap:break-word;
 	line-height: 25px;
 	font-size: 13px;
+	max-width: 500px;
 }
-tr td:last-child,
-tr td:nth-last-child(2),
-tr td:nth-last-child(3){
+
+.users tr td:nth-last-child(2),
+.users tr td:nth-last-child(3){
+	border: 0;
+	padding: 0;
+}
+tr td:last-child{
 	border: 0;
 	padding: 0;
 }

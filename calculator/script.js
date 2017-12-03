@@ -1,4 +1,3 @@
-
 function require_to_site(url, params = '', callback) {
 		let xhr = new XMLHttpRequest(); //поддержка запросов серверу
 		xhr.open('GET', 'http://localhost:8080/' + url + params, true); //формирование запроса с значением урл
@@ -16,20 +15,35 @@ $('#send_out').on('click',()=>{
     if($('#name_field').val()==0) alert('Заполните поле Имя');
     else {
         if($('#link_field').val()!=0){
-            require_to_site('setOrder?', $.param({
-	            name: $('#name_field').val(),
-	            email: $('#email_field').val() || ' ',
-                link: $('#link_field').val(),
-                details: $('#result').html()
-	        }),()=>{});
-            alert('Наш бот уже написал вам, проверьте!');
-        }else if( $('#email_field').val()!=0){
-            alert('Мы получили ваш заказ, ожидайте связи по почте с нашим оператором');
+			let link = $('#link_field').val();
+			if(/https:\/\/vk\.com\/id/gi.test(link) || /vk\.com\/id/gi.test(link)){
+				let uid = link.replace(/vk\.com\/id/,'').replace(/https:\/\//,'');
+				if($('#phone_field').val()!=0){
+					let phone = $('#phone_field').val().replace(/^[ ]+/g, '');
+					let details = $('#result').html().replace(/<b>/gi,'').replace(/<\/b>/gi,'');
+                    details = details.replace(/<br>/gi,'\n')
+                    details = details.replace(/<small>/gi,'').replace(/<\/small>/gi,'');
+                    details = details.replace(/<big>/gi,'').replace(/<\/big>/gi,'');
+					if (/\([\d]{2}\)[\d]{3}[\d]{2}[\d]{2}$/.test(phone)){
+							require_to_site('setOrder?', $.param({
+				            name: $('#name_field').val(),
+			                uid: uid,//https://vk.com/id59502817
+							phone: phone,
+			                details: details
+				        }));
+						alert('Наш бот уже написал вам, проверьте! (на всякий случай мы отправили вам письмо и на почту)');
+					}else alert('Вы неверно ввели номер телефона');
+				}else alert('Вы не ввели номер телефона');
+			} else alert('Проверьте правильность введенной ссылки');
+        }else if( $('#email_field').val() != 0){
+			regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			if(regex.test($('#email_field').val()) == true) alert('Мы получили ваш заказ, ожидайте связи по почте с нашим оператором');
+			else alert('Вы неверно ввели email');
         } else alert('Заполните либо поле со ссылкой либо email, чтобы мы могли с вами связаться');
     }
 })
 
-function count(){
+function count_price(){
         $.getJSON('data.json', function(json) {
             let height = parseFloat($('#letter-height').val().replace(/,/,'.'));
             let length = $('#phrase').val().length;
@@ -91,13 +105,13 @@ function select_change(){
         $('#letter-height-box').css('display','block');
         $('#box-square').val(undefined)
     }
-    if($('#result').html() != '<span>Проверьте, все ли поля заполнены, и заполнены ли они правильно</span>' || $('#result').html() != 'Здесь отобразится результат вашего выбора') count();
+    if($('#result').html() != '<span>Проверьте, все ли поля заполнены, и заполнены ли они правильно</span>' || $('#result').html() != 'Здесь отобразится результат вашего выбора') count_price();
 
 }
 function result_output(){
     $('#output_text1').html($('#phrase').val());
     $('#output_text2').html($('#phrase').val());
-    if($('#result').html() != 'Здесь отобразится результат вашего выбора') count();
+    if($('#result').html() != 'Здесь отобразится результат вашего выбора') count_price();
 }
 
 $(document).ready(function() {
@@ -129,7 +143,7 @@ $(document).ready(function() {
                 $('#back-fieldset').css('display','none');
             }
         });
-        count();
+        count_price();
     });
 
     $('#color-palette-letters td').each(function() {
@@ -177,7 +191,7 @@ $(document).ready(function() {
             $('#output_text1').css('font-size', (+height+10));
             $('#output_text2').css('font-size', (+height+10));
         }
-        count();
+        count_price();
     });
     $('#box-square').keyup(function(){
         let height = parseFloat($('#box-square').val().replace(/,/,'.'));
@@ -198,7 +212,7 @@ $(document).ready(function() {
             $('#output_text1').css('font-size', (+height*10+10));
             $('#output_text2').css('font-size', (+height*10+10));
         }
-        count();
+        count_price();
     });
     $('#back-width').keyup(function(){
         let back_w = parseFloat($('#back-width').val().replace(/,/,'.'));
@@ -210,7 +224,7 @@ $(document).ready(function() {
             $("#back-width").popover('hide');
             $('#output_text3').css('padding-left', (+back_w-back_w/20)/2).css('padding-right', (+back_w-back_w/20)/2).css('margin-left', -(+back_w-back_w/20)/2);
         }
-        count();
+        count_price();
 
     });
     $('#back-haight').keyup(function(){
@@ -227,7 +241,7 @@ $(document).ready(function() {
             $("#back-haight").popover('hide');
             $('#output_text3').css('padding-top', (+back_h)/2).css('padding-bottom', (+back_h)/2).css('top', 110-(+back_h)/2);
         }
-        count();
+        count_price();
     });
     $('#phrase').keyup(function(){ result_output(); });
     $('#letter-height').focusout(function(){$("#letter-height").popover('hide');});
