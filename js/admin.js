@@ -49,7 +49,6 @@ export class Admin{
                     wfield: 'uid',
         			wval: uid
                 }), (xhr) => {
-                    console.log(JSON.parse(xhr.responseText));
                     if(JSON.parse(xhr.responseText).length == 0){
                         App.have_order(uid,'0');
                     }
@@ -86,7 +85,6 @@ export class Admin{
                 wfield: 'have_orders',
     			wval: '1'
             }), (xhr) => {
-                console.log(JSON.parse(xhr.responseText));
                 let html = Sub.orders_to_table(orders,JSON.parse(xhr.responseText));
                 el.html(html);
             });

@@ -67,7 +67,13 @@ function accept(req, res) { //основная функция обработки
             break;
         case '/setOrder':
             console.log('--------set order');
-            buffer.push({name: par.name,email: par.email,phone: par.phone,uid: par.uid,details: par.details});
+            buffer.push({
+                name: par.name,
+                email: par.email,
+                phone: par.phone,
+                uid: par.uid,
+                address:par.address,
+                details: par.details});
             break;
         case '/getOrder':
             console.log('--------get order');

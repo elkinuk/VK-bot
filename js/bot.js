@@ -6,7 +6,7 @@ import {Sub} from './subsidary.js';
 export class Bot{
     static send_message(uid, text){
         if(uid && text) VK.send_request('messages.send',{user_id: uid, message: text}, ()=>{Sub.consoleLog('Сообщение отправлено пользователю с id' + uid);});
-        else Sub.consoleLog('Сообщение не может быть отправлено. Проверьте text или id','error');
+        else Sub.consoleLog('Сообщение не может быть отправлено. Проверьте id','error');
     }
     static start_talking(){
         if (!this.myid){ //чтобы по нажатию на ту же кнопку можно было стопить
@@ -71,11 +71,11 @@ export class Bot{
         }else Sub.consoleLog('Бот не начнет рассылку, пока вы не введете сообщение','error');
     }
     static execute_command(uid,command){
-        let str;
+        let str='';
         switch (command) {
             case '/help':
                 str =  `Вот список доступных команд:<br>
-                    /help - вывести список доступных команд<br>/unsubscribe - отпиаться от рассылки<br>/subscribe - подписаться на рассылку<br>
+                    /help - вывести список доступных команд<br>/unsubscribe - отпиаться от рассылки<br>/subscribe - подписаться на рассылку<br>/show - вывести информацию по заказам<br>/whoami - вывести информацию о вас<br>/repeat - повторить последний заказ
                 `;
                 break;
             case '/unsubscribe':
@@ -83,17 +83,28 @@ export class Bot{
                 str = 'Вы успешно отписаны от рекламной рассылки';
                 break;
             case '/subscribe':
-                name = Bot.get_name(uid,'',App.add_user);
+                name = Bot.get_name(uid,'','',App.add_user);
                 str = 'Вы успешно подписаны на рекламную рассылку';
+                break;
+            case '/show':
+                Bot.show_orders(uid);
+                break;
+            case '/whoami':
+                Bot.show_me(uid);
+                break;
+            case '/repeat':
+                Bot.repeat_order(uid);
                 break;
             default: str = 'Прости, но я не знаю такой команды, отправь /help чтобы получить весь список команд';
         }
-        Bot.send_message(uid, str);
-        Sub.consoleLog(`Клиент написал: ${command}<br>Бот ответил: ${str}`,'high');
+        if(str){
+            Bot.send_message(uid, str);
+            Sub.consoleLog(`Клиент написал: ${command}<br>Бот ответил: ${str}`,'high');
+        }
     }
-    static get_name(uid,phone,callback){
+    static get_name(uid,phone,address,callback){
         VK.send_request('users.get',{user_ids: uid}, (data)=>{
-            callback(uid,phone,data.response[0].first_name,data.response[0].last_name);
+            callback(uid,phone,address,data.response[0].first_name,data.response[0].last_name);
         });
     }
     static start_reacting(){
@@ -120,10 +131,64 @@ export class Bot{
                     details = details.replace(/<big>/gi,'').replace(/<\/big>/gi,'');
                     Sub.consoleLog('Бот ответил на заказ','high');
                     Bot.send_message(result[i].uid, `Привет ${result[i].name}, Ты сделал закакз<br>"${details}"`);
-                    App.add_order(result[i].uid,'+375'+result[i].phone,details);
+                    App.add_order(result[i].uid,'+375'+result[i].phone,result[i].address,details);
                     Admin.refresh_orders($('#orders_data'));
                 }
             }
 		});
 	}
+    static show_orders(uid){
+        Sub.require_to_bd('select?', $.param({
+            table: 'Orders',
+            fields: 'date,details',
+            wfield: 'uid',
+            wval: uid
+        }), (xhr) => {
+            let result = JSON.parse(xhr.responseText);
+            let text = '';
+            for(let i=0;i<result.length;i++){
+                text += `${result[i].date}: ${result[i].details}<br>`;
+            }
+            Bot.send_message(uid, text);
+            Sub.consoleLog(`Клиент написал: /show<br>Бот ответил: ${text}`,'high');
+        });
+    }
+    static show_me(uid){
+        Sub.require_to_bd('select?', $.param({
+            table: 'Users',
+            fields: '*',
+            wfield: 'id',
+            wval: uid
+        }), (xhr) => {
+            let result = JSON.parse(xhr.responseText);
+            let text = '';
+            for(let i=0;i<result.length;i++){
+                text += `${result[i].first_name} ${result[i].last_name}<br>Телефон: ${result[i].phone}<br>Адрес: ${result[i].address}`;
+            }
+            Bot.send_message(uid, text);
+            Sub.consoleLog(`Клиент написал: /show<br>Бот ответил: ${text}`,'high');
+        });
+    }
+    static repeat_order(uid){
+        Sub.require_to_bd('select?', $.param({
+            table: 'Orders',
+            fields: '*',
+            wfield: 'uid',
+            wval: uid
+        }), (xhr) => {
+            let result = JSON.parse(xhr.responseText);
+            let message = '';
+            if(result.length==0){
+                message = 'У вас еще не было заказов, чтобы их повторять';
+            }else{
+                result = result[result.length-1];
+                App.add_order(result.uid,result.phone,result.address,result.details);
+                message = 'Последний заказ повторен';
+                Sub.consoleLog(`Заказ пользователя id${uid} повторен`,'high');
+            }
+            Bot.send_message(uid, message);
+            Sub.consoleLog(`Клиент написал: /repeat<br>Бот ответил: ${message}`,'high');
+            Admin.refresh_orders($('#orders_data'));
+        });
+    }
 }

@@ -12,35 +12,41 @@ function require_to_site(url, params = '', callback) {
 	}
 
 $('#send_out').on('click',()=>{
-    if($('#name_field').val()==0) alert('Заполните поле Имя');
-    else {
-        if($('#link_field').val()!=0){
-			let link = $('#link_field').val();
-			if(/https:\/\/vk\.com\/id/gi.test(link) || /vk\.com\/id/gi.test(link)){
-				let uid = link.replace(/vk\.com\/id/,'').replace(/https:\/\//,'');
-				if($('#phone_field').val()!=0){
-					let phone = $('#phone_field').val().replace(/^[ ]+/g, '');
-					let details = $('#result').html().replace(/<b>/gi,'').replace(/<\/b>/gi,'');
-                    details = details.replace(/<br>/gi,'\n')
-                    details = details.replace(/<small>/gi,'').replace(/<\/small>/gi,'');
-                    details = details.replace(/<big>/gi,'').replace(/<\/big>/gi,'');
-					if (/\([\d]{2}\)[\d]{3}[\d]{2}[\d]{2}$/.test(phone)){
-							require_to_site('setOrder?', $.param({
-				            name: $('#name_field').val(),
-			                uid: uid,//https://vk.com/id59502817
-							phone: phone,
-			                details: details
-				        }));
-						alert('Наш бот уже написал вам, проверьте! (на всякий случай мы отправили вам письмо и на почту)');
-					}else alert('Вы неверно ввели номер телефона');
-				}else alert('Вы не ввели номер телефона');
-			} else alert('Проверьте правильность введенной ссылки');
-        }else if( $('#email_field').val() != 0){
-			regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-			if(regex.test($('#email_field').val()) == true) alert('Мы получили ваш заказ, ожидайте связи по почте с нашим оператором');
-			else alert('Вы неверно ввели email');
-        } else alert('Заполните либо поле со ссылкой либо email, чтобы мы могли с вами связаться');
-    }
+	if($('#result').html()=='Здесь отобразится результат вашего выбора' || $('#result').html()=='<span>Проверьте, все ли поля заполнены, и заполнены ли они правильно</span>') alert('Вы не сделали заказ');
+	else{
+	    if($('#name_field').val()==0) alert('Заполните поле Имя');
+	    else {
+	        if($('#link_field').val()!=0){
+				let link = $('#link_field').val();
+				if(/https:\/\/vk\.com\/id/gi.test(link) || /vk\.com\/id/gi.test(link)){
+					let uid = link.replace(/vk\.com\/id/,'').replace(/https:\/\//,'');
+					if($('#phone_field').val()!=0){
+						if($('#address_field').val()!=0){
+							let phone = $('#phone_field').val().replace(/^[ ]+/g, '');
+							let details = $('#result').html().replace(/<b>/gi,'').replace(/<\/b>/gi,'');
+		                    details = details.replace(/<br>/gi,'\n')
+		                    details = details.replace(/<small>/gi,'').replace(/<\/small>/gi,'');
+		                    details = details.replace(/<big>/gi,'').replace(/<\/big>/gi,'');
+							if (/\([\d]{2}\)[\d]{3}[\d]{2}[\d]{2}$/.test(phone)){
+									require_to_site('setOrder?', $.param({
+						            name: $('#name_field').val(),
+					                uid: uid,
+									phone: phone,
+									address: $('#address_field').val(),
+					                details: details
+						        }));
+								alert('Наш бот уже написал вам, проверьте! (на всякий случай мы отправили вам письмо и на почту)');
+							}else alert('Вы неверно ввели номер телефона');
+						}else alert('Вы не ввели адрес');
+					}else alert('Вы не ввели номер телефона');
+				} else alert('Проверьте правильность введенной ссылки');
+	        }else if( $('#email_field').val() != 0){
+				regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				if(regex.test($('#email_field').val()) == true) alert('Мы получили ваш заказ, ожидайте связи по почте с нашим оператором');
+				else alert('Вы неверно ввели email');
+	        } else alert('Заполните либо поле со ссылкой либо email, чтобы мы могли с вами связаться');
+	    }
+	}
 })
 
 function count_price(){
