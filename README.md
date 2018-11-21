@@ -8,7 +8,7 @@
   <br>
 </h1>
 
-<h4 align="center"><a href="https://newsapi.org/" target="_blank">VK</a>bot on js. vkAPI was used</h4>
+<h4 align="center"><a href="https://vk.com/" target="_blank">VK</a>bot on js. <a href="https://vk.com/dev/first_guide">vkAPI</a> was used</h4>
 
 <br>
 <br>
